@@ -1,0 +1,40 @@
+{
+  "passwords": [
+    {
+      "url": "bbb",
+      "username": "bbb",
+      "password": "bbb",
+      "id": 4
+    },
+    {
+      "id": 5,
+      "url": "a",
+      "username": "b",
+      "password": "c"
+    },
+    {
+      "id": 1495363773685,
+      "url": "www",
+      "username": "ed",
+      "password": "dmd"
+    },
+    {
+      "id": 1495365734009,
+      "url": "ww",
+      "username": "jo",
+      "password": "o"
+    },
+    {
+      "id": 1495369754892,
+      "url": "www",
+      "username": "edim",
+      "password": "Edimdendy123@"
+    },
+    {
+      "id": 1495631738686,
+      "url": "www",
+      "username": "edim",
+      "password": "Edim21#"
+    }
+  ]
+}
