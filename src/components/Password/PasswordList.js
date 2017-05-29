@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletePassword, editPassword } from '../../actions/passwordAction'
+import { deletePassword, editPassword, fetchPassword } from '../../actions/passwordAction'
 import PasswordEdit from './PasswordEdit'
+import Search from './Search'
 
 import {
 	Table,
@@ -14,7 +15,7 @@ import {
 	CircularProgress,
 	Dialog,
 	FlatButton,
-
+	GridList,
 } from '../../MaterialUI';
 
 class PasswordList extends React.Component{
@@ -29,12 +30,17 @@ class PasswordList extends React.Component{
 			},
 			state: {
 				open :false
-			}
+			},
+			query :''
+
 		}
+	}
+	searchNews(event) {
+			this.setState({query: event.target.value})
 	}
 
 	componentDidMount() {
-
+		this.props.fetchPassword()
 	}
 
 	handleChange(e) {
@@ -69,6 +75,7 @@ class PasswordList extends React.Component{
         onTouchTap={ ()=>{
 						this.handleClose()
 						this.props.editPassword(this.state.form)
+						
 					}
 				}
       />,
@@ -89,10 +96,14 @@ class PasswordList extends React.Component{
 	}
 
 	renderTBody() {
+		let filteredData = this.props.passwords.data.filter((x) => {
+				let regex = new RegExp(this.state.query, 'gi')
+				return regex.test(x.password)
+		})
 		return (
 			<TableBody
 				displayRowCheckbox={false}>
-				{ this.props.passwords.data.map(item => (
+				{ filteredData.map(item => (
 	      <TableRow key={item.id}>
 	        <TableRowColumn>{item.id}</TableRowColumn>
 	        <TableRowColumn>{item.url}</TableRowColumn>
@@ -120,11 +131,25 @@ class PasswordList extends React.Component{
 
 	render() {
 	return (
-		<div>
+		<div style={styles.root}>
+
+		<GridList
+			cols={0}
+			cellHeight={0}
+			padding={0}
+			style={styles.gridList}
+		>
+
 		<Table>
+
 		  <TableHeader
 				displaySelectAll={false}
 				displayRowCheckbox={false}>
+				<TableRow>
+          <TableHeaderColumn colSpan="5" tooltip="Search Password" style={{textAlign: 'right'}}>
+            <Search handleSearchChange={this.searchNews.bind(this)}/>
+          </TableHeaderColumn>
+        </TableRow>
 		    <TableRow>
 		      <TableHeaderColumn>ID</TableHeaderColumn>
 		      <TableHeaderColumn>URL</TableHeaderColumn>
@@ -135,12 +160,8 @@ class PasswordList extends React.Component{
 		  </TableHeader>
 			{ this.renderTBody() }
 		</Table>
-		{
-			!this.props.passwords.length &&
-			(
-				<CircularProgress size={60} thickness={7} />
-			)
-		}
+		</GridList>
+
 		{
 			this.renderEditForm()
 		}
@@ -149,11 +170,23 @@ class PasswordList extends React.Component{
 	)
 }
 }
-
+const styles = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  gridList: {
+    width: 1100,
+    height: 800,
+    overflowY: 'auto',
+  },
+};
 const mapStateToProps = state => ({
 	passwords: state // tadinya array , sekarang menjadi object {data, loading}
 })
 const mapDispatchToProps = dispatch => ({
+	fetchPassword : () => dispatch(fetchPassword()),
 	deletePassword: (id) => dispatch(deletePassword(id)),
 	editPassword : data => dispatch(editPassword(data)),
 })

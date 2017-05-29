@@ -19,12 +19,12 @@ export const fetchPassword = () => {
 	return dispatch =>
 		axios.get(`http://localhost:4000/passwords/`)
 		.then(response => {
-			setTimeout(() => {
+
 				return dispatch({ // next
 					type: 'FETCH_PASSWORD',
 					payload: response.data
 				})
-			}, 2000)
+			
 
 		})
 		.catch(error => {
@@ -65,5 +65,3 @@ export const editPassword = data => {
 			console.log(error)
 		})
 }
-//  type hrs sama
-// payload boleh beda

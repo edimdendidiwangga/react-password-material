@@ -1,14 +1,11 @@
 import React from 'react'
-// import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
 import {
-	RaisedButton,
 	AppBar,
 	Drawer,
 	MenuItem,
 } from '../MaterialUI';
-
 
 class Wrapper extends React.Component {
 	constructor(props){
@@ -21,6 +18,7 @@ class Wrapper extends React.Component {
 	openDrawer() {
 		this.setState({open: true})
 	}
+
   render() {
     return (
 	      	<div>

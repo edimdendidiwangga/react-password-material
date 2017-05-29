@@ -4,15 +4,11 @@ const initialState = {
 }
 
 const fetchPassword = (state, data) => {
-	// return data
 	let newState = {...state, data}
-	// menjadi { data: [], loading:false } lalu direplace oleh data menjadi
-	// { data: []}
 	return newState
 }
 
 const addPassword = (state, data) => {
-	// let newState = [...state, data]
   let newState = {
 	 	...state,
 		data: [...state.data, data]
@@ -21,7 +17,7 @@ const addPassword = (state, data) => {
 }
 
 const editPassword = (state, data) => {
-	let newData = state.data.filter(item => { // without data before initialState
+	let newData = state.data.filter(item => {
 		return item.id === data.id ? data : item
 	})
 	let newState = {

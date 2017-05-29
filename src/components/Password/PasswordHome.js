@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 
 import {
-	RaisedButton,
 	AppBar,
 	Drawer,
 	MenuItem,
 } from '../../MaterialUI';
 
-import Wrapper from '../Wrapper'
 import PasswordList from './PasswordList'
 import { fetchPassword } from '../../actions/passwordAction'
 
@@ -28,6 +26,7 @@ class PasswordHome extends React.Component {
 	openDrawer(){
 		this.setState({open:true})
 	}
+	
   render() {
     return (
 	      	<div>

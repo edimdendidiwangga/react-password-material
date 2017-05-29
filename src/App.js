@@ -5,10 +5,6 @@ import { BrowserRouter, Route } from 'react-router-dom'
 
 import {
 	MuiThemeProvider,
-	RaisedButton,
-	AppBar,
-	Drawer,
-	MenuItem,
 } from './MaterialUI';
 
 import { PasswordHome, PasswordForm } from './components/Password'
@@ -19,11 +15,13 @@ class App extends Component {
 
   render() {
     return (
-			<MuiThemeProvider>
+			<MuiThemeProvider >
 				<BrowserRouter>
-					<div>
+					<div >
+
 						<Route exact path="/" component={PasswordHome} />
 						<Route exact path="/new" component={PasswordForm} />
+
 					</div>
 				</BrowserRouter>
 			</MuiThemeProvider>

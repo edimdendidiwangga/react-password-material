@@ -8,6 +8,7 @@ import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import {GridList, GridTile} from 'material-ui/GridList';
 
 import {
   Table,
@@ -29,6 +30,8 @@ export {
 	Paper,
 	Dialog,
 	FlatButton,
+	GridList,
+	GridTile,
 
 	Table,
   TableBody,

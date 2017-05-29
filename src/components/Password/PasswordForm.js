@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import { addPassword } from '../../actions/passwordAction'
 import Wrapper from '../Wrapper'
@@ -65,7 +64,7 @@ class PasswordForm extends React.Component{
 		var result = upper || lower || special || angka || length
 
 		const style = {
-			textDecoration: result ? 'line-through' : ''
+			color: result ? 'green' : '',
 		}
 		return (
 			<h4 style={style}>
@@ -75,7 +74,7 @@ class PasswordForm extends React.Component{
 	}
 
 	render() {
-	
+
 	return (
 		<Wrapper>
 		<div style={styles.container}>
