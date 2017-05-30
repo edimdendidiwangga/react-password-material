@@ -1,8 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React from 'react'
+import App from './App'
+import { shallow, mount } from 'enzyme'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-});
+import {
+	MuiThemeProvider,
+} from './MaterialUI';
+
+describe('<App />', () => {
+
+  let wrapper
+  beforeEach(() => {
+    wrapper = shallow(<App />)
+  })
+
+  test('renders without crashing', () => {
+    expect(wrapper).toBeDefined()
+  });
+
+  test('should render MuiThemeProvider  ', () => {
+    expect(wrapper.containsAllMatchingElements([
+      <MuiThemeProvider />
+    ])).toBeDefined()
+  });
+
+
+})

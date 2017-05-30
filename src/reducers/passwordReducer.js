@@ -1,6 +1,5 @@
 const initialState = {
-	data : [],
-	loading: false,
+	data : []
 }
 
 const fetchPassword = (state, data) => {
@@ -16,10 +15,8 @@ const addPassword = (state, data) => {
 	return newState
 }
 
-const editPassword = (state, data) => {
-	let newData = state.data.filter(item => {
-		return item.id === data.id ? data : item
-	})
+const editPassword = (state, updated) => {
+	let newData = state.data.map(password => password.id === updated.id ? updated : password)
 	let newState = {
 	 	...state,
 		data: newData
@@ -36,22 +33,12 @@ const deletePassword = (state, id) => {
 	return newState
 }
 
-const displayLoading = (state, bool) => {
-	let newState = {
-	 	...state,
-		loading: bool
-  }
-	return newState
-}
-
 const passwordReducer = (state = initialState, { type, payload }) => {
 	switch (type) {
 		case 'FETCH_PASSWORD': return fetchPassword(state, payload)
-		case 'FETCH_PASSWORD_SUCCESS': return fetchPassword(state, payload)
 		case 'ADD_PASSWORD': return addPassword(state, payload)
 		case 'EDIT_PASSWORD': return editPassword(state, payload)
 		case 'DELETE_PASSWORD': return deletePassword(state, payload)
-		case 'DISPLAY_LOADING' : return displayLoading(state, payload)
 			break;
 		default: return state
 	}
